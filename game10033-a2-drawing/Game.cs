@@ -16,6 +16,7 @@ namespace MohawkGame2D
         // Static colors
         Color brown = new Color("5B361C");
         Color tree = new Color("22B14C");
+        Color bgGrass = new Color("48892A");
         Color tree1 = new Color("22B14C"); // Initial color, identical to summer
 
         // Tree colors
@@ -26,7 +27,7 @@ namespace MohawkGame2D
         public void Setup()
         {
             Window.SetSize(400, 400);
-            Window.SetTitle("Little House on a Hill");
+            Window.SetTitle("The Hill");
 
         }
 
@@ -38,20 +39,37 @@ namespace MohawkGame2D
             Window.ClearBackground(Color.Cyan); // Placeholder colour
             Draw.SetLineSize(0);
 
+            // Graphics
+
+            // Sun and Moon
+
+            Draw.FillColor = Color.Yellow;
+            Draw.Circle(new Vector2(345, 55), 40);
+
+            Draw.FillColor = Color.OffWhite;
+            Draw.Circle(new Vector2(345, 350), 30);
+
+            // Background
+
+            Draw.FillColor = bgGrass;
+            Draw.Rectangle(new Vector2(0, 300), new Vector2(400, 400));
+
             // Foreground Tree
             // Trunk
             Draw.FillColor = brown;
-            Draw.Rectangle(new Vector2(-2, 200), new Vector2(80, 402));
+            Draw.Rectangle(new Vector2(0, 200), new Vector2(80, 400));
 
             // Leaves
             Draw.FillColor = tree;
-            Draw.Circle(new Vector2 (-20, 200), 60);
+            Draw.Circle(new Vector2(-20, 200), 60);
             Draw.Circle(new Vector2(80, 200), 60);
             Draw.Circle(new Vector2(30, 125), 60);
             Draw.Circle(new Vector2(30, 220), 40);
             Draw.Circle(new Vector2(75, 145), 50);
 
-            // Season-changing inputs
+            // Inputs
+
+            // Changing Seasons
             if (Input.IsKeyboardKeyPressed(KeyboardKey.A))
             {
                 tree = spring;
