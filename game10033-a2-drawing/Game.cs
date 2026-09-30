@@ -63,14 +63,22 @@ namespace MohawkGame2D
             // Changing the Time
 
             Vector2 sunInput = new Vector2(0, 0);
+            Vector2 moonInput = new Vector2(0, 0);
             if (Input.IsKeyboardKeyDown(KeyboardKey.Down) && dayTime.Y < 350)
             {
                 sunInput.Y = 1;
             }
-            Vector2 moonInput = new Vector2(0, 0);
             if (Input.IsKeyboardKeyDown(KeyboardKey.Down) && dayTime.Y == 350 && nightTime.Y > 55)
             {
                 moonInput.Y = -1;
+            }
+            if (Input.IsKeyboardKeyDown(KeyboardKey.Up) && nightTime.Y < 350)
+            {
+                moonInput.Y = 1;
+            }
+            if (Input.IsKeyboardKeyDown(KeyboardKey.Up) && nightTime.Y == 350 && dayTime.Y > 55)
+            {
+                sunInput.Y = -1;
             }
 
             dayTime += sunInput * 300f * Time.DeltaTime;
