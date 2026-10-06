@@ -196,6 +196,8 @@ namespace MohawkGame2D
             Draw.FillColor = brown;
             Draw.Rectangle(new Vector2(205, 270), new Vector2(45, 80));
             Draw.Triangle(new Vector2(125, 250), new Vector2(330, 250), new Vector2(227.5f, 170));
+            Draw.FillColor = Color.LightGray;
+            Draw.Circle(new Vector2(215, 315), 7);
 
             Draw.FillColor = window;
             Draw.Rectangle(new Vector2(160, 270), new Vector2(35, 35));
