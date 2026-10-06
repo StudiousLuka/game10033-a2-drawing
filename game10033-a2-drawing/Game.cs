@@ -15,16 +15,24 @@ namespace MohawkGame2D
 
         // Custom Colors
         Color brown = new Color("5B361C");
+        Color bgBrown = new Color("442815");
         Color brick = new Color("FF7E6D");
 
         // Season Colors
 
-        // Tree Colors
+        // Foreground Tree Colors
         Color tree = new Color("5DCC2A"); // Initial tree color, identical to summer
         Color spring = new Color("FFB7C5"); // Cherry Blossom Pink
         Color summer = new Color("5DCC2A"); // Green
         Color fall = new Color("FF5728"); // Orange
         Color winter = new Color(0, 0); // Transparent, to get rid of leaves
+
+        // Background Tree Colors
+        Color bgTree = new Color("489E21"); // Initial background tree color, identical to bgSummer
+        Color bgSpring = new Color("D893C0"); // Dark Cherry Blossom Pink
+        Color bgSummer = new Color("489E21"); // Dark Green
+        Color bgFall = new Color("D84231"); // Dark Reddish-Orange
+        // The background trees use the same winter color as the foreground tree because it is just transparent.
 
         // Hill Grass Colors
         Color hillGrass = new Color("34BC3C");
@@ -47,7 +55,7 @@ namespace MohawkGame2D
         Color daySky = new Color(190, 255, 255);
         Color nightSky = new Color(45, 35, 105);
 
-        // Window Color
+        // House Windows Color
 
         Color window = new Color(0);
         Color lightsOff = new Color(0);
@@ -73,24 +81,28 @@ namespace MohawkGame2D
             {
                 tree = spring;
                 hillGrass = normHillGrass;
+                bgTree = bgSpring;
                 bgGrass = normBgGrass;
             }
             if (Input.IsKeyboardKeyPressed(KeyboardKey.S))
             {
                 tree = summer;
                 hillGrass = normHillGrass;
+                bgTree = bgSummer;
                 bgGrass = normBgGrass;
             }
             if (Input.IsKeyboardKeyPressed(KeyboardKey.D))
             {
                 tree = fall;
                 hillGrass = normHillGrass;
+                bgTree = bgFall;
                 bgGrass = normBgGrass;
             }
             if (Input.IsKeyboardKeyPressed(KeyboardKey.F))
             {
                 tree = winter;
                 hillGrass = snowHillGrass;
+                bgTree = winter;
                 bgGrass = snowBgGrass;
             }
 
@@ -140,8 +152,30 @@ namespace MohawkGame2D
             Draw.Circle(nightTime, 30);
 
             // Background
+
+            // Grass
             Draw.FillColor = bgGrass;
             Draw.Rectangle(new Vector2(0, 300), new Vector2(400, 400));
+
+            // Tree Trunks (Right to Left)
+            Draw.FillColor = bgBrown;
+            Draw.Rectangle(new Vector2(380, 280), new Vector2(10, 30));
+            Draw.Rectangle(new Vector2(350, 280), new Vector2(10, 30));
+            Draw.Rectangle(new Vector2(320, 280), new Vector2(10, 30));
+            Draw.Rectangle(new Vector2(140, 280), new Vector2(10, 30));
+            Draw.Rectangle(new Vector2(110, 280), new Vector2(10, 30));
+            Draw.Rectangle(new Vector2(80, 280), new Vector2(10, 30));
+
+            // Tree Leaves (Right to Left)
+            Draw.FillColor = bgTree;
+            Draw.Circle(new Vector2(385, 275), 14);
+            Draw.Circle(new Vector2(355, 275), 14);
+            Draw.Circle(new Vector2(325, 275), 14);
+            Draw.Circle(new Vector2(295, 275), 14);
+            Draw.Circle(new Vector2(145, 275), 14);
+            Draw.Circle(new Vector2(115, 275), 14);
+            Draw.Circle(new Vector2(85, 275), 14);
+
 
             // Hill
 
