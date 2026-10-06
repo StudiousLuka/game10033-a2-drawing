@@ -51,15 +51,15 @@ namespace MohawkGame2D
         Vector2 nightTime = new Vector2(345, 350); // The moon's position
 
         // Sky Color
-        Color sky = new Color(190, 255, 255);
-        Color daySky = new Color(190, 255, 255);
-        Color nightSky = new Color(45, 35, 105);
+        Color sky = new Color(190, 255, 255); // Initial sky color, identical to daySky
+        Color daySky = new Color(190, 255, 255); // Sky Blue
+        Color nightSky = new Color(45, 35, 105); // Dark Blue
 
         // House Windows Color
 
-        Color window = new Color(0);
-        Color lightsOff = new Color(0);
-        Color lightsOn = new Color("FFFF00");
+        Color window = new Color(0); // Initial window color, identical to lightsOff
+        Color lightsOff = new Color(0); // Black
+        Color lightsOn = Color.Yellow; // Yellow
 
 
         public void Setup()
@@ -77,28 +77,28 @@ namespace MohawkGame2D
             // Inputs
 
             // Changing Seasons
-            if (Input.IsKeyboardKeyPressed(KeyboardKey.A))
+            if (Input.IsKeyboardKeyPressed(KeyboardKey.A)) // Press A for spring
             {
                 tree = spring;
                 hillGrass = normHillGrass;
                 bgTree = bgSpring;
                 bgGrass = normBgGrass;
             }
-            if (Input.IsKeyboardKeyPressed(KeyboardKey.S))
+            if (Input.IsKeyboardKeyPressed(KeyboardKey.S)) // Press S for summer
             {
                 tree = summer;
                 hillGrass = normHillGrass;
                 bgTree = bgSummer;
                 bgGrass = normBgGrass;
             }
-            if (Input.IsKeyboardKeyPressed(KeyboardKey.D))
+            if (Input.IsKeyboardKeyPressed(KeyboardKey.D)) // Press D for fall
             {
                 tree = fall;
                 hillGrass = normHillGrass;
                 bgTree = bgFall;
                 bgGrass = normBgGrass;
             }
-            if (Input.IsKeyboardKeyPressed(KeyboardKey.F))
+            if (Input.IsKeyboardKeyPressed(KeyboardKey.F)) // Press F for winter
             {
                 tree = winter;
                 hillGrass = snowHillGrass;
@@ -113,7 +113,7 @@ namespace MohawkGame2D
             {
                 sunInput.Y = 1;
             }
-            if (Input.IsKeyboardKeyDown(KeyboardKey.Down) && dayTime.Y == 350 && nightTime.Y > 55)
+            if (Input.IsKeyboardKeyDown(KeyboardKey.Down) && dayTime.Y >= 350 && nightTime.Y > 55)
             {
                 moonInput.Y = -1;
                 
@@ -122,21 +122,28 @@ namespace MohawkGame2D
             {
                 moonInput.Y = 1;
             }
-            if (Input.IsKeyboardKeyDown(KeyboardKey.Up) && nightTime.Y == 350 && dayTime.Y > 55)
+            if (Input.IsKeyboardKeyDown(KeyboardKey.Up) && nightTime.Y >= 350 && dayTime.Y > 55)
             {
                 sunInput.Y = -1;
             }
 
-            dayTime += sunInput * 300f * Time.DeltaTime;
-            nightTime += moonInput * 300f * Time.DeltaTime;
+            dayTime += sunInput * 250f * Time.DeltaTime;
+            nightTime += moonInput * 250f * Time.DeltaTime;
 
-            if (dayTime.Y == 350)
+            // Sky Color Changing
+            if (dayTime.Y >= 350)
             {
                 sky = nightSky;
-                window = lightsOn;
             }
             else
                 sky = daySky;
+            
+            // House Windows Color Changing
+            if (dayTime.Y >= 350)
+            {
+                window = lightsOn;
+            }
+            else
                 window = lightsOff;
 
             // Graphics
@@ -189,7 +196,6 @@ namespace MohawkGame2D
             Draw.FillColor = brown;
             Draw.Rectangle(new Vector2(205, 270), new Vector2(45, 80));
             Draw.Triangle(new Vector2(125, 250), new Vector2(330, 250), new Vector2(227.5f, 170));
-
 
             Draw.FillColor = window;
             Draw.Rectangle(new Vector2(160, 270), new Vector2(35, 35));
